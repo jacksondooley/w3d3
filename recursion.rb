@@ -25,7 +25,7 @@ def exponentiation(base, expon)
   end
 end
 
-p exponentiation(4 , 4)
+# p exponentiation(4 , 4)
 
 
 def deeper_dup(arr)
@@ -66,8 +66,24 @@ end
 
 # p Fibonacci(6)
 
-def BinarySearch(arr, val)
-  middle = arr / 2 
-  
-
+def bsearch(arr, val)
+  mid = arr.length / 2 
+  l = arr[0...mid]
+  r = arr[mid + 1..-1]
+  return mid if arr[mid] == val
+  return nil if arr.length <= 1
+  if arr[mid] > val 
+    bsearch(l ,val)
+  elsif arr[mid] < val
+    memod = bsearch(r, val)
+    memod != nil ? memod + mid + 1 : nil
+  end
 end 
+
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
