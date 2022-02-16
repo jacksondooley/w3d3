@@ -1,3 +1,4 @@
+require "byebug"
 # class Recursion
 
 def iter_range(start, en)
@@ -87,3 +88,55 @@ end
 # p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
 # p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
 # p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+
+ def merge_sort (arr)
+  return arr if arr.length <= 1
+
+  mid = arr.length / 2
+  left = arr.take(mid)
+  right = arr.drop(mid)
+
+  merge(merge_sort(left), merge_sort(right))
+
+  # if left.length && right.length == 1
+  #   merge(left, right)
+  # else
+  #   merge_sort(left) 
+  #   merge_sort(right)
+  # end
+ end 
+
+ def merge(l,r)
+  merged = []
+
+  while !l.empty? && !r.empty?
+    if l.first <= r.first
+      merged << l.shift
+    else  
+      merged << r.shift
+    end
+  end
+  merged + l + r
+ end 
+
+#  p merge_sort([38, 27, 43, 3, 9, 82, 10])
+
+class Array
+  def subsets
+    return [[]] if empty?
+    first = self.shift
+    row = self.subsets
+    output = [] 
+    row.each do |ele|
+      output << ele
+      output 
+    end 
+    debugger
+  end
+
+end
+
+p [1].subsets # => [[]]
+# row = [[],   [1],    [2],    [1, 2]]
+# next = [[3], [1, 3], [2, 3], [1, 2, 3]]
+# row + next
